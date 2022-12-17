@@ -1,6 +1,6 @@
 
 Usage:
-    tmpl2html run [options] <target>
+    tmpl2html run [options] <gotemplate-file>
     tmpl2html help
     tmpl2html version
 
@@ -13,9 +13,6 @@ Commands:
         Print usage.
     version
         Print version.
-
-Target:
-    Specify gotemplate file.
 
 Options:
     --basedir <directory>
