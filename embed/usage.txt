@@ -1,0 +1,29 @@
+
+Usage:
+    tmpl2html run [options] <target>
+    tmpl2html help
+    tmpl2html version
+
+tmpl2html is a cli tool to convert gotemplate to html.
+
+Commands:
+    run
+        Convert gotemplate to html.
+    help
+        Print usage.
+    version
+        Print version.
+
+Target:
+    Specify gotemplate file.
+
+Options:
+    --basedir <directory>
+        Specify the base directory of root-relative path.
+        default ./
+    --makedeps
+        Output the dependencies of gotemplate to a file in Makefile format.
+        The file name is "gotemplate-file-name.deps".
+        The file is output in the same directory as gotemplate.
+    --verbose
+        Turn on verbose mode.
