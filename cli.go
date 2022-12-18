@@ -35,16 +35,23 @@ func (cli *CLI) runContext() (err error) {
 }
 
 const (
-	CMD_HELP = "help"
+	CMD_HELP    = "help"
+	CMD_VERSION = "version"
 )
 
 //go:embed embed/usage.txt
 var usage []byte
 
+//go:embed embed/version.txt
+var version string
+
 func (cli *CLI) parseArgs() (exit bool, err error) {
 	switch cli.Args[1] {
 	case CMD_HELP:
 		_, err = fmt.Fprintf(cli.Stdout, "%s\n", usage)
+		return true, err
+	case CMD_VERSION:
+		_, err = fmt.Fprintf(cli.Stdout, "%s\n", version)
 		return true, err
 	}
 

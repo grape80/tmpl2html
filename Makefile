@@ -2,18 +2,23 @@ MAKEFLAGS += --no-builtin-rules
 .SUFFIXES:
 
 app := tmpl2html
+versionFile := embed/version.txt
 mainDir := cmd/$(app)
 bin := bin/$(app)
+logDir := log
 
 gofiles := $(shell find . -type f -name '*.go' -print)
+embed := $(shell find . -type f -path '*/embed/*' -print)
+now = $(shell date '+%Y%m%d-%H%M%S')
 
-gobuild: $(bin)
+gosetver:
+	echo $(now) > $(versionFile)
 
-$(bin): $(gofiles)
+gobuild: gosetver $(bin)
+
+$(bin): $(embed) $(gofiles) 
 	go build -o $@ $(mainDir)/main.go
 
-logDir := log
-now = $(shell date '+%Y%m%d-%H%M%S')
 .PHONY: gotest
 gotest:
 	mkdir -p $(logDir)

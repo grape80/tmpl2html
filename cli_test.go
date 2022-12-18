@@ -26,6 +26,9 @@ func TestCLI_Run(t *testing.T) {
 	}{
 		"help":              {OSArgsTest{programName, tmpl2html.CMD_HELP, []string{}, ""}, 0},
 		"help_useless_args": {OSArgsTest{programName, tmpl2html.CMD_HELP, []string{"--option=useless"}, "useless.tmpl"}, 0},
+
+		"version":              {OSArgsTest{programName, tmpl2html.CMD_VERSION, []string{}, ""}, 0},
+		"version_useless_args": {OSArgsTest{programName, tmpl2html.CMD_VERSION, []string{"--option=useless"}, "useless.tmpl"}, 0},
 	}
 
 	for name, test := range tests {
@@ -48,7 +51,7 @@ func TestCLI_Run(t *testing.T) {
 
 			exitCode := cli.Run()
 			if exitCode != test.exitCodeExpected {
-				t.Errorf("parseArgs() = %v; want %v", exitCode, test.exitCodeExpected)
+				t.Errorf("Run() = %v; want %v", exitCode, test.exitCodeExpected)
 			}
 		})
 	}
