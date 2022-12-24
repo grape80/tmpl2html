@@ -13,13 +13,14 @@ type CLI struct {
 }
 
 const (
-	errorExitCode = 1
+	EXIT_SUCCESS = 0
+	EXIT_FAILURE = 1
 )
 
 func (cli *CLI) Run() (exitCode int) {
 	if err := cli.runContext(); err != nil {
 		fmt.Fprintf(cli.Stderr, "%v\n", err)
-		return errorExitCode
+		return EXIT_FAILURE
 	}
 	return exitCode
 }
