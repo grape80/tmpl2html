@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	cli := tmpl2html.CLI{
+	cli := &tmpl2html.CLI{
 		Args:   os.Args,
 		Stdout: os.Stdout,
 		Stderr: os.Stderr,
