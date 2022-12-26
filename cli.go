@@ -48,7 +48,7 @@ var version string
 
 func (cli *CLI) parseArgs() (exit bool, err error) {
 	if len(cli.Args) < 2 {
-		return true, &cliError{code: ERR_NO_ARGS}
+		return true, &t2hError{code: ERR_NO_ARGS}
 	}
 
 	switch cli.Args[1] {

@@ -4,19 +4,19 @@ import "fmt"
 
 type errorCode uint8
 
-type cliError struct {
+type t2hError struct {
 	code errorCode
 	err  error
 }
 
-func (e *cliError) Error() string {
+func (e *t2hError) Error() string {
 	if e.code == ERR_UNEXPECTED {
 		return fmt.Sprintf("%s\n", errMsgs[e.code])
 	}
 	return fmt.Sprintf("%s\n%s", errMsgs[e.code], usage)
 }
 
-func (e *cliError) Unwrap() error {
+func (e *t2hError) Unwrap() error {
 	return e.err
 }
 

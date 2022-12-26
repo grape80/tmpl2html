@@ -6,11 +6,11 @@ import (
 )
 
 var (
-	ErrWrapped = &cliError{code: ERR_UNEXPECTED, err: fs.ErrExist}
+	ErrWrapped = &t2hError{code: ERR_UNEXPECTED, err: fs.ErrExist}
 
-	ErrMsgUnexpected = fmt.Sprintf("%s\n", errMsgs[ERR_UNEXPECTED])
-	ErrUnexpected    = &cliError{code: ERR_UNEXPECTED}
+	MsgUnexpected = fmt.Sprintf("%s\n", errMsgs[ERR_UNEXPECTED])
+	ErrUnexpected = &t2hError{code: ERR_UNEXPECTED}
 
-	ErrMsgNoArgs = fmt.Sprintf("%s\n%s", errMsgs[ERR_NO_ARGS], usage)
-	ErrNoArgs    = &cliError{code: ERR_NO_ARGS}
+	MsgNoArgs = fmt.Sprintf("%s\n%s", errMsgs[ERR_NO_ARGS], usage)
+	ErrNoArgs = &t2hError{code: ERR_NO_ARGS}
 )

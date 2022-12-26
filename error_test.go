@@ -18,18 +18,18 @@ func TestCliError_Unwrap(t *testing.T) {
 func TestCliError_Error(t *testing.T) {
 
 	tests := map[string]struct {
-		errMsgExpected string
-		err            error
+		msgExpected string
+		err         error
 	}{
-		"err_unexpected": {ErrMsgUnexpected, ErrUnexpected},
-		"err_no_args":    {ErrMsgNoArgs, ErrNoArgs},
+		"err_unexpected": {MsgUnexpected, ErrUnexpected},
+		"err_no_args":    {MsgNoArgs, ErrNoArgs},
 	}
 
 	for name, test := range tests {
 		test := test
 		t.Run(name, func(tt *testing.T) {
-			if test.err.Error() != test.errMsgExpected {
-				t.Errorf("Error() = %v; want %v", test.err.Error(), test.errMsgExpected)
+			if test.err.Error() != test.msgExpected {
+				t.Errorf("Error() = %v; want %v", test.err.Error(), test.msgExpected)
 			}
 		})
 	}
