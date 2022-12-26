@@ -47,6 +47,10 @@ var usage []byte
 var version string
 
 func (cli *CLI) parseArgs() (exit bool, err error) {
+	if len(cli.Args) < 2 {
+		return true, &cliError{code: ERR_NO_ARGS}
+	}
+
 	switch cli.Args[1] {
 	case CMD_HELP:
 		_, err = fmt.Fprintf(cli.Stdout, "%s\n", usage)

@@ -22,8 +22,10 @@ func (e *cliError) Unwrap() error {
 
 const (
 	ERR_UNEXPECTED errorCode = iota
+	ERR_NO_ARGS
 )
 
 var errMsgs = map[errorCode]string{
 	ERR_UNEXPECTED: "An unexpected error has occurred.",
+	ERR_NO_ARGS:    "No argument specified.",
 }

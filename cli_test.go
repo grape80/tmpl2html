@@ -13,6 +13,8 @@ func TestCLI_Run(t *testing.T) {
 		exitCodeExpected int
 		args             []string
 	}{
+		"no_args": {EXIT_FAILURE, []string{}},
+
 		"help":              {EXIT_SUCCESS, []string{CMD_HELP}},
 		"help_useless_args": {EXIT_SUCCESS, []string{CMD_HELP, "--option=useless", "useless.tmpl"}},
 

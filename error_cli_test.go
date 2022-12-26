@@ -22,6 +22,7 @@ func TestCliError_Error(t *testing.T) {
 		err            error
 	}{
 		"err_unexpected": {ErrMsgUnexpected, ErrUnexpected},
+		"err_no_args":    {ErrMsgNoArgs, ErrNoArgs},
 	}
 
 	for name, test := range tests {
