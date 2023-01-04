@@ -24,9 +24,10 @@ func TestCLI_Run(t *testing.T) {
 		"run_invalid_gotmpl":     {EXIT_FAILURE, []string{CMD_RUN, "testdata/invalid.tmpl"}},
 		"run_exec_error":         {EXIT_FAILURE, []string{CMD_RUN, "testdata/exec_error.tmpl"}},
 
-		"run_no_opts":      {EXIT_SUCCESS, []string{CMD_RUN, "testdata/input.tmpl"}},
-		"run_empty_gotmpl": {EXIT_SUCCESS, []string{CMD_RUN, "testdata/empty.tmpl"}},
-		"run_with_basedir": {EXIT_SUCCESS, []string{CMD_RUN, "--basedir=testdata", "testdata/basedir.tmpl"}},
+		"run_no_opts":       {EXIT_SUCCESS, []string{CMD_RUN, "testdata/input.tmpl"}},
+		"run_empty_gotmpl":  {EXIT_SUCCESS, []string{CMD_RUN, "testdata/empty.tmpl"}},
+		"run_with_basedir":  {EXIT_SUCCESS, []string{CMD_RUN, "--basedir=testdata", "testdata/basedir.tmpl"}},
+		"run_with_makedeps": {EXIT_SUCCESS, []string{CMD_RUN, "--makedeps", "testdata/input.tmpl"}},
 
 		// help
 		"help":              {EXIT_SUCCESS, []string{CMD_HELP}},

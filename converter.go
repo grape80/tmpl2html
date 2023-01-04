@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"io/fs"
 	"os"
 	"path/filepath"
 	"strings"
@@ -46,6 +47,10 @@ func (c *converter) run() (err error) {
 
 	if err = c.execute(); err != nil {
 		return err
+	}
+
+	if c.makedeps {
+		return c.createMakeDeps()
 	}
 
 	return err
@@ -92,4 +97,20 @@ func (c *converter) execute() (err error) {
 	_, err = fmt.Fprintf(c.stdout, "%s", &buf)
 
 	return err
+}
+
+const (
+	depsPerm fs.FileMode = 0644
+)
+
+func (c *converter) createMakeDeps() (err error) {
+	var buf bytes.Buffer
+
+	buf.WriteString(c.gotmpl + ":")
+	for _, p := range c.partials {
+		buf.WriteString(" " + p)
+	}
+	buf.WriteString("\n")
+
+	return os.WriteFile(c.gotmpl+".deps", buf.Bytes(), depsPerm)
 }
