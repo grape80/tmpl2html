@@ -58,7 +58,6 @@ var version string
 var (
 	basedir  string
 	makedeps bool
-	verbose  bool
 )
 
 // Gotemplate
@@ -74,7 +73,6 @@ func (cli *CLI) parseArgs() (exit bool, err error) {
 		runCmd := flag.NewFlagSet(CMD_RUN, flag.ContinueOnError)
 		runCmd.StringVar(&basedir, OPT_BASEDIR, OPT_BASEDIR_DEFAULT, "")
 		runCmd.BoolVar(&makedeps, OPT_MAKEDEPS, OPT_MAKEDEPS_DEFAULT, "")
-		runCmd.BoolVar(&verbose, OPT_VERBOSE, OPT_VERBOSE_DEFAULT, "")
 		runCmd.SetOutput(io.Discard)
 
 		if err = runCmd.Parse(cli.Args[2:]); err != nil {
@@ -111,7 +109,6 @@ func (cli *CLI) execute() (err error) {
 		basedir:  basedir,
 		gotmpl:   gotmpl,
 		makedeps: makedeps,
-		verbose:  verbose,
 	}
 
 	if err := c.run(); err != nil {

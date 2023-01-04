@@ -22,5 +22,3 @@ Options:
         Output the dependencies of gotemplate to a file in Makefile format.
         The file name is "gotemplate-file-name.deps".
         The file is output in the same directory as gotemplate.
-    --verbose
-        Turn on verbose mode.
