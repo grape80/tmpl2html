@@ -13,11 +13,21 @@ func TestCLI_Run(t *testing.T) {
 		exitCodeExpected int
 		args             []string
 	}{
-		"no_args": {EXIT_FAILURE, []string{}},
+		"no_args":     {EXIT_FAILURE, []string{}},
+		"invalid_cmd": {EXIT_FAILURE, []string{"invalid", "go.tmpl"}},
 
+		// run
+		"run_no_gotmpl":     {EXIT_FAILURE, []string{CMD_RUN}},
+		"run_invalid_opt":   {EXIT_FAILURE, []string{CMD_RUN, "--option=invalid", "go.tmpl"}},
+		"run_multi_gotmpls": {EXIT_FAILURE, []string{CMD_RUN, "go.tmpl", "go2.tmpl"}},
+
+		"run_no_opts": {EXIT_SUCCESS, []string{CMD_RUN, "go.tmpl"}},
+
+		// help
 		"help":              {EXIT_SUCCESS, []string{CMD_HELP}},
 		"help_useless_args": {EXIT_SUCCESS, []string{CMD_HELP, "--option=useless", "useless.tmpl"}},
 
+		// version
 		"version":              {EXIT_SUCCESS, []string{CMD_VERSION}},
 		"version_useless_args": {EXIT_SUCCESS, []string{CMD_VERSION, "--option=useless", "useless.tmpl"}},
 	}
