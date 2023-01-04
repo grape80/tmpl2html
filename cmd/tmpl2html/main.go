@@ -8,9 +8,9 @@ import (
 
 func main() {
 	cli := &tmpl2html.CLI{
-		Args:   os.Args,
 		Stdout: os.Stdout,
 		Stderr: os.Stderr,
+		Args:   os.Args,
 	}
 	os.Exit(cli.Run())
 }
