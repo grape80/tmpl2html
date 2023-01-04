@@ -2,6 +2,7 @@ package tmpl2html
 
 import (
 	_ "embed"
+	"errors"
 	"fmt"
 	"io"
 )
@@ -19,7 +20,7 @@ const (
 
 func (cli *CLI) Run() (exitCode int) {
 	if err := cli.runContext(); err != nil {
-		fmt.Fprintf(cli.Stderr, "%v\n", err)
+		fmt.Fprintf(cli.Stderr, "%v\n%s\n", err, usage)
 		return EXIT_FAILURE
 	}
 	return exitCode
@@ -48,7 +49,7 @@ var version string
 
 func (cli *CLI) parseArgs() (exit bool, err error) {
 	if len(cli.Args) < 2 {
-		return true, &t2hError{code: ERR_NO_ARGS}
+		return true, errors.New(ERR_NO_ARGS)
 	}
 
 	switch cli.Args[1] {
