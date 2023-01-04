@@ -1,0 +1,3 @@
+{{define "/testdata/_header.prtl"}}
+    <header>Header</header>
+{{end}}

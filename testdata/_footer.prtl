@@ -1,0 +1,3 @@
+{{define "/testdata/_footer.prtl"}}
+    <footer>Footer</footer>
+{{end}}

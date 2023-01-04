@@ -1,8 +1,14 @@
 package tmpl2html
 
 import (
+	"bufio"
+	"bytes"
 	"fmt"
 	"io"
+	"os"
+	"path/filepath"
+	"strings"
+	"text/template"
 )
 
 const (
@@ -30,9 +36,60 @@ type converter struct {
 func (c *converter) run() (err error) {
 	defer func() {
 		if r := recover(); r != nil {
-			fmt.Fprintf(c.stderr, "%s %v\n", ERR_RUNTIME, r)
+			err = fmt.Errorf("%s %v\n", ERR_RUNTIME, r)
 		}
 	}()
+
+	if err = c.parseTemplate(); err != nil {
+		return err
+	}
+
+	if err = c.execute(); err != nil {
+		return err
+	}
+
+	return err
+}
+
+const (
+	partialPrefix = `{{template "`
+	partialSuffix = `}}`
+)
+
+func (c *converter) parseTemplate() (err error) {
+
+	f, err := os.Open(gotmpl)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	s := bufio.NewScanner(f)
+	for s.Scan() {
+		l := strings.TrimSpace(s.Text()) // to clean
+		if strings.HasPrefix(l, partialPrefix) && strings.HasSuffix(l, partialSuffix) {
+			p := filepath.Join(c.basedir, strings.Split(l, `"`)[1]) // prefix”path"suffix -> [prefix path suffix]
+			c.partials = append(c.partials, p)
+		}
+	}
+
+	return err
+}
+
+func (c *converter) execute() (err error) {
+
+	files := []string{}
+	files = append(files, c.gotmpl)
+	files = append(files, c.partials...)
+
+	t := template.Must(template.ParseFiles(files...))
+
+	var buf bytes.Buffer
+	if err = t.Execute(&buf, nil); err != nil {
+		return err
+	}
+
+	_, err = fmt.Fprintf(c.stdout, "%s", &buf)
 
 	return err
 }

@@ -17,11 +17,16 @@ func TestCLI_Run(t *testing.T) {
 		"invalid_cmd": {EXIT_FAILURE, []string{"invalid", "go.tmpl"}},
 
 		// run
-		"run_no_gotmpl":     {EXIT_FAILURE, []string{CMD_RUN}},
-		"run_invalid_opt":   {EXIT_FAILURE, []string{CMD_RUN, "--option=invalid", "go.tmpl"}},
-		"run_multi_gotmpls": {EXIT_FAILURE, []string{CMD_RUN, "go.tmpl", "go2.tmpl"}},
+		"run_no_gotmpl":          {EXIT_FAILURE, []string{CMD_RUN}},
+		"run_invalid_opt":        {EXIT_FAILURE, []string{CMD_RUN, "--option=invalid", "go.tmpl"}},
+		"run_multi_gotmpls":      {EXIT_FAILURE, []string{CMD_RUN, "go1.tmpl", "go2.tmpl"}},
+		"run_cannot_open_gotmpl": {EXIT_FAILURE, []string{CMD_RUN, "cannot_open.tmpl"}},
+		"run_invalid_gotmpl":     {EXIT_FAILURE, []string{CMD_RUN, "testdata/invalid.tmpl"}},
+		"run_exec_error":         {EXIT_FAILURE, []string{CMD_RUN, "testdata/exec_error.tmpl"}},
 
-		"run_no_opts": {EXIT_SUCCESS, []string{CMD_RUN, "go.tmpl"}},
+		"run_no_opts":      {EXIT_SUCCESS, []string{CMD_RUN, "testdata/input.tmpl"}},
+		"run_empty_gotmpl": {EXIT_SUCCESS, []string{CMD_RUN, "testdata/empty.tmpl"}},
+		"run_with_basedir": {EXIT_SUCCESS, []string{CMD_RUN, "--basedir=testdata", "testdata/basedir.tmpl"}},
 
 		// help
 		"help":              {EXIT_SUCCESS, []string{CMD_HELP}},

@@ -1,0 +1,3 @@
+{{define "/_basedir.prtl"}}
+    <span>Basedir</span>
+{{end}}
