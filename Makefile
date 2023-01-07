@@ -17,7 +17,7 @@ gosetver:
 gobuild: gosetver $(bin)
 
 $(bin): $(embed) $(gofiles) 
-	go build -ldflags '-s -w' -o $@ $(mainDir)/main.go
+	go build -ldflags '-s -w' -o $@ ./$(mainDir)
 
 .PHONY: gotest
 gotest:
