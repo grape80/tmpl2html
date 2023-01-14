@@ -16,7 +16,7 @@ Commands:
 
 Options:
     --basedir <directory>
-        Specify the base directory of root-relative path.
+        Specify the base directory of the root-relative path.
         default ./
     --makedeps
         Output the dependencies of gotemplate to a file in Makefile format.
