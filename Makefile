@@ -49,21 +49,21 @@ test:
 all: build test xbuild
 
 ## Clean
-.PHONY: cleansyso ##  remove syso files.
+.PHONY: cleansyso ##  Remove syso files.
 cleansyso:
 	rm -vf *.syso
 
-.PHONY: cleanbin ##   remove bin directory.
+.PHONY: cleanbin ##   Remove bin directory.
 cleanbin:
 	rm -rvf $(binDir)
 
-.PHONY: cleandist ##  remove dist directory.
+.PHONY: cleandist ##  Remove dist directory.
 cleandist:
 	rm -rvf $(distDir)
 
-.PHONY: cleanlog ##   remove log directory.
+.PHONY: cleanlog ##   Remove log directory.
 cleanlog:
 	rm -rvf $(logDir)
 
-.PHONY: cleanall ##   run all clean targets. 
+.PHONY: cleanall ##   Run all clean targets. 
 cleanall: cleansyso cleanbin cleandist cleanlog
